@@ -17,13 +17,13 @@ public class Main {
             int i = scanner.nextInt();
             // здесь будет работа с командами
             if(i==1) {
-                addSteps(scanner, stepTracker);
+                addSteps(stepTracker);
             }
             else if(i==2) {
-                changeGoal(scanner, stepTracker);
+                changeGoal(stepTracker);
             }
             else if(i==3) {
-                stepTracker.printStatistic();
+                printStatistic(stepTracker);
             }
             else if(i==0) {
                 System.out.println("Пока");
@@ -35,24 +35,26 @@ public class Main {
     //Вывод меню
     static void printMenu(){
         System.out.println("Меню!");
-        for(int i=0; i<menu.length-1; i++) System.out.println(menu[i]);
-        System.out.println(menu[menu.length-1]);
+        for(int i=0; i<menu.length; i++) {
+            System.out.println(menu[i]);
+        }
     }
 
     //Пункт меню.Добавление шагов за день
-    static void addSteps(Scanner scanner, StepTracker stepTracker){
-        System.out.println("Выберите день для отчета (1-30)");
-        int day = scanner.nextInt();
-        System.out.println("Выберите месяц для отчета (1-12)");
-        int month = scanner.nextInt();
-        System.out.println("Введите количество пройденных шагов");
-        int steps = scanner.nextInt();
-        stepTracker.addNewNumberStepsPerDay(day, month, steps);
+    static void addSteps(StepTracker stepTracker){
+        //Ввод нового отчета
+        System.out.println("Добавление новых параметров!");
+        stepTracker.addNewNumberStepsPerDay();
     }
 
     //Пункт меню.Изменение цели
-    static void changeGoal(Scanner scanner, StepTracker stepTracker){
-        System.out.println("Введите новую цель: ");
-        stepTracker.changeStepGoal(scanner.nextInt());
+    static void changeGoal(StepTracker stepTracker){
+        System.out.println("Добавление новой цели!");
+        stepTracker.changeStepGoal();
+    }
+
+    static void printStatistic(StepTracker stepTracker){
+        System.out.println("Статистика за месяц!");
+        stepTracker.printStatistic();
     }
 }

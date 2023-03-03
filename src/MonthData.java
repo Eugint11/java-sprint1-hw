@@ -32,15 +32,13 @@ public class MonthData {
         int localStreak = 0;
         int finalStreak = 0;
         for(int i=0; i<days.length; i++){
-            if(days[i]>=goalByStepsPerDay){
+            while(i<days.length && days[i]>=goalByStepsPerDay) {
                 localStreak++;
+                i++;
             }
-            else {
-                if(finalStreak<localStreak){
-                    finalStreak = localStreak;
-                }
-                localStreak = 0;
-            }
+            if(finalStreak<localStreak)
+                finalStreak=localStreak;
+            localStreak=0;
         }
         return finalStreak;
     }
